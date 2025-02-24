@@ -1,0 +1,16 @@
+Class Solution {
+func lengthOfLongestSubstring(_ s: String) -> Int {
+        var longestSubstringLength: Int = 0
+        var startIndex = 0
+        var charMap: [Character: Int] = [:]
+        
+        for (index, char) in s.enumerated() {
+            if let lastIndex = charMap[char] {
+                startIndex = max(startIndex, lastIndex + 1)
+            }
+            longestSubstringLength = max(longestSubstringLength, index - startIndex + 1)
+            charMap[char] = index
+        }
+        return longestSubstringLength
+    }
+}
